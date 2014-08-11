@@ -1,0 +1,40 @@
+/* styles here. */
+
+body.cerca-content { background: #CCC; font-family: Helvetica, Arial, sans-serif; font-size: 0.9em; line-height: 1.2em; }
+body.cerca-content #cerca { width: 1000px; margin: 20px auto; background: #FFF; padding: 15px; border: 1px solid #AAA; border-radius: 3px;  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); min-height: 100px; } 
+
+body#grayfeature #cerca { width: 745px; float: right; }
+body#grayfeature #cerca table { width: 100%; font-size: 1.15em; }
+
+#cerca table { min-width: 90%; margin: 10px auto; border: 1px solid #DDD; border-collapse: collapse; empty-cells: hide; }
+#cerca table td, th { border: 1px solid #DDD; padding: 4px 8px; margin: 0px; }
+
+#cerca table th { background: #DDE; }
+#cerca table tr.striped td { background: #EEF; }
+
+#cerca table.schedule td { text-align: right; font-weight: bold; color: #955; font-size: 0.85em; }
+#cerca table.schedule td + td { text-align: left; font-weight: normal; color: #000; font-size: 1em; }
+#cerca table.schedule span.person { color: #277; }
+
+#cerca fieldset { border: 1px solid #CCC; border-radius: 4px; padding: 10px 15px; margin: 5px auto 15px; background-color: #EEE; box-shadow: 0px 0px 5px #DDD;
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+}
+#cerca fieldset legend { font-style: italic; background-color: #fff; border: 1px solid #CCC; }
+
+#cerca input[type=text] { width: 400px; padding: 2px 3px; border: 1px solid #CCC; border-radius: 3px; margin: 3px 5px; }
+
+#cerca h1 { margin: 15px 15px 25px 15px; background-color: #EEE; border: 1px solid #EEE; padding: 10px; border-radius: 4px; box-shadow: 0px 0px 5px #DDD; color: #025; }
+
+.notice { border: 3px solid #DDD; background-color: #EEE; border-radius: 2px; margin: 10px auto; padding: 3px 5px; }
+.warning { color: #A00; background-color: #FEE; border-color: #A00; }
+.success { color: #0A0; background-color: #EFE; border-color: #0A0; }
+
+.loggedinas { margin-top: 2px; margin-bottom: 20px; width: 100%; border-bottom: 1px solid #EEE; text-align: right; }
+body.cerca-content .monospaced { font-family: "Courier New", Courier, monospace; }
