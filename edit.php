@@ -71,6 +71,9 @@ if($item && $id) {
 		case 'presenters':
 			foreach($fields[$item] as $field) {
 				print "Edit {$field}: <input type='text' name='{$field}' value='".o($form_values[$field])."' /><br />";
+        if("date" == $field) {
+          print "(Enter using a 'YYYY-MM-DD HH:MM:SS' format.)<br />"; 
+        }
 			}
 			break;
 
@@ -173,7 +176,7 @@ if('presenters' == $item || 'seminars' == $item) {
 <?php
 } elseif('talks' == $item) {
 
-$result = $mysqli->dbQuery("SELECT seminars.id sid, talks.id id, date, title, name FROM seminars LEFT JOIN talks ON seminars.id=talks.seminar LEFT JOIN presenters ON presenters.id=talks.presenter ORDER BY date, name ASC");
+$result = $mysqli->dbQuery("SELECT seminars.id sid, talks.id id, announced, keymailed, date, title, name FROM seminars LEFT JOIN talks ON seminars.id=talks.seminar LEFT JOIN presenters ON presenters.id=talks.presenter ORDER BY date, name ASC");
 
 print "<table>";
 $prevdate = "";
@@ -187,15 +190,21 @@ foreach($result as $seminar) {
 	if($seminar['date'] != $prevdate) {
 		if($prevdate != "") { print "</td></tr>"; }
 		print "<tr><td>{$seminar[date]}<br />";
-		print "[<a href='edit.php?item=seminars&id={$sid}'>edit</a>]";
-		print "[<a href='edit.php?item=talks&sid={$sid}'>add speaker</a>]";
+		print "<a href='edit.php?item=seminars&id={$sid}'>edit</a>";
+		print " | <a href='edit.php?item=talks&sid={$sid}'>add speaker</a>";
+        if($seminar['announced']) {
+          print "<br /><em class='green'>Announcement Sent</em>";
+        }
 		print "</td><td>";
 	}
 	$prevdate = $seminar[date];
 
 	if($seminar['name']) {
-		print $seminar['name'] . " - " . o($seminar['title']);
-		print " [<a href='edit.php?item=talks&id={$id}'>change</a>]";
+		print $seminar['name'] . ($seminar['title'] ? " - " . o($seminar['title']) : "");
+		print " | <a href='edit.php?item=talks&id={$id}'>change</a>";
+        if($seminar['keymailed']) {
+            print " | <em class='green'>Email Sent</em>";
+        }
 		print "<br />";
 	}
 }
