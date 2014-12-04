@@ -94,9 +94,53 @@ HANDLE SEMINAR ANNOUNCEMENTS
 
 **/
 
+    if($seminar_time-4800 < $now && $seminar['announced'] == 1) {
+        $email = "
+        Hello,
+        
+        Just a reminder that the next CERCA seminar is in about an hour. We'll be hearing from the following:
+        ";
+        
+        $talks = $mysqli->dbQuery("SELECT * FROM (SELECT * FROM talks WHERE seminar='".$seminar['id']."') AS t LEFT JOIN presenters ON t.presenter=presenters.id");
+        foreach($talks as $talk) {
+            $email .= "* " . ($talk->name) . ($talk->title ? (" on '" . $talk->title . "'") : "") . "\n";
+        }
+        $email .= "\nYou can see the schedule of talks at http://cerca.case.edu/pizza.php.";
+        $email .= "\nHope to see you there!\n";
+        
+        
+        // make sure there are actually talks this week.
+        foreach($talks as $talk) {
+            if($talk->name == "NO CERCA") {
+                $email = 0;
+            }
+        }
+        
+        
+        $subject = "CERCA Seminar Soon";
+        $org_email = $conf['email'];
+        $to = "CERCA List <cerca@case.edu>";
+        $headers = 'From: "CERCA Notices" <no-reply@anduril.phys.cwru.edu>' . "\r\n" .
+				    'Reply-To: ' . $org_email . "\r\n" .
+				    'Cc: ' . $org_email . "\r\n";
+        if($email) {
+            $success = mail($to, $subject, $email, $headers);
+            if($success) {
+                print "Mail sent!";
+                $mysqli->dbCommand("UPDATE seminars SET announced=2 WHERE id='".$seminar['id']."'");
+            } else {
+                print "Mail failed!";
+            }
+            else {
+                print "No day of announcment!"
+            }
+        }
+    }
+    
+    
 	// if (cercannounce < now && announced == 0)
 		// announce seminar talks
-	if($announce_time < $now && $seminar['announced'] == 0) {
+    if($announce_time < $now && $seminar['announced'] == 0) {
 		$email = "
 Hello,
 
