@@ -10,6 +10,12 @@ print <<<HEADER
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>CERCA - Scheduling System</title>
 	<link type="text/css" rel="stylesheet" media="all" href="assets/styles/styles.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="assets/styles/bootstrap-datetimepicker.min.css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="assets/js/seminars.js"></script>
+
 </head>
 <body class="cerca-content">
 <div id="cerca">

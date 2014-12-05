@@ -70,10 +70,12 @@ if($item && $id) {
 		case 'seminars':
 		case 'presenters':
 			foreach($fields[$item] as $field) {
-				print "Edit {$field}: <input type='text' name='{$field}' value='".o($form_values[$field])."' /><br />";
-        if("date" == $field) {
-          print "(Enter using a 'YYYY-MM-DD HH:MM:SS' format.)<br />"; 
-        }
+				if("date" == $field) {
+					print "<input data-format='yyyy-MM-dd hh:mm:ss' name='{$field}' value='".o($form_values[$field])."' type='text'></input>";
+				  	print "(Enter using a 'YYYY-MM-DD HH:MM:SS' format.)<br />"; 
+				} else {
+					print "Edit {$field}: <input type='text' name='{$field}' value='".o($form_values[$field])."' /><br />";
+				}
 			}
 			break;
 
@@ -113,9 +115,9 @@ if($item && $id) {
 		default:
 			print "You can edit the following:
 					<ul>
-						<li><a href='edit.php?item=talks'>Individual talks by date</a></li>
-						<li><a href='edit.php?item=presenters'>People who present</a></li>
-						<li><a href='edit.php?item=seminars'>Seminar dates</a></li>
+						<li><a href='edit.php?item=talks'>Talks - Assign people to talk on seminar dates</a></li>
+						<li><a href='edit.php?item=presenters'>People - Add/remove/change people who can present</a></li>
+						<li><a href='edit.php?item=seminars'>Dates - Add/remove/change talk dates</a></li>
 						<li><a href='settings.php'>General Settings</a></li>
 					</ul>";
 			site_footer();
@@ -203,7 +205,7 @@ foreach($result as $seminar) {
 		print $seminar['name'] . ($seminar['title'] ? " - " . o($seminar['title']) : "");
 		print " | <a href='edit.php?item=talks&id={$id}'>change</a>";
         if($seminar['keymailed']) {
-            print " | <em class='green'>Email Sent</em>";
+            print " | <em class='green'>Talk Notify Email Sent</em>";
         }
 		print "<br />";
 	}

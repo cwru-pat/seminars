@@ -96,10 +96,10 @@ HANDLE SEMINAR ANNOUNCEMENTS
 
     if($seminar_time-4800 < $now && $seminar['announced'] == 1) {
         $email = "
-        Hello,
-        
-        Just a reminder that the next CERCA seminar is in about an hour. We'll be hearing from the following:
-        ";
+Hello,
+
+Just a reminder that the next CERCA seminar is in about an hour. We'll be hearing from the following:
+";
         
         $talks = $mysqli->dbQuery("SELECT * FROM (SELECT * FROM talks WHERE seminar='".$seminar['id']."') AS t LEFT JOIN presenters ON t.presenter=presenters.id");
         foreach($talks as $talk) {
@@ -132,7 +132,7 @@ HANDLE SEMINAR ANNOUNCEMENTS
                 print "Mail failed!";
             }
             else {
-                print "No day of announcment!"
+                print "No day of announcment!";
             }
         }
     }
@@ -182,6 +182,4 @@ For the next CERCA seminar (".date("M jS \\a\\t G:i", $seminar_time)."), we'll b
 
 }
 
-?>
-
-Mail run complete.
+print "Mail run complete.";
