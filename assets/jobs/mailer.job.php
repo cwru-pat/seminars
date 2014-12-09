@@ -131,9 +131,8 @@ Just a reminder that the next CERCA seminar is in about an hour. We'll be hearin
             } else {
                 print "Mail failed!";
             }
-            else {
-                print "No day of announcment!";
-            }
+        } else {
+            print "No day of announcment!";
         }
     }
     
