@@ -98,7 +98,7 @@ HANDLE SEMINAR ANNOUNCEMENTS
         $email = "
 Hello,
 
-Just a reminder that the next CERCA seminar is in about an hour. We'll be hearing from the following:
+Just a reminder that the next CERCA seminar is at ".date("g:i a", $seminar_time)." today (about an hour from now). We'll be hearing from the following:
 ";
         
         $talks = $mysqli->dbQuery("SELECT * FROM (SELECT * FROM talks WHERE seminar='".$seminar['id']."') AS t LEFT JOIN presenters ON t.presenter=presenters.id");
