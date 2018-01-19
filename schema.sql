@@ -47,6 +47,10 @@ INSERT INTO `settings`
   (`name`, `value`, `description`)
   VALUES
   ("lastupdate", 0, "Unix Timestamp of last job run time");
+INSERT INTO `settings`
+  (`name`, `value`, `description`)
+  VALUES
+  ("seminartime", '5.12.45' , "w.G.i of standard seminar time");
 
 CREATE TABLE `talks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
