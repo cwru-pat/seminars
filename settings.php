@@ -4,7 +4,8 @@ require_once("assets/includes/site.php");
 site_header();
 check_login();
 
-if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])$token->validateToken($_REQUEST['CSRFToken'])) {
+if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])
+	&& $token->validateToken($_REQUEST['CSRFToken'])) {
 		// $safe_title = $mysqli->mysqlEscape($_REQUEST['title']);
 		foreach($_REQUEST as $name => $value) {
 			$safe_name = $mysqli->mysqlEscape($name);
