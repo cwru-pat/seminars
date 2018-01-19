@@ -24,4 +24,5 @@ $mysqli = new DBConn(array(
 $jobaccess = TRUE;
 
 //reusable CSRFToken
+global $token;
 $token = new CSRFToken();
