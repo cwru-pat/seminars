@@ -34,6 +34,10 @@ INSERT INTO `settings`
 INSERT INTO `settings`
   (`name`, `value`, `description`)
   VALUES
+  ("server", 'phantom.case.edu' , "Host and path preceding root directory of site.");
+INSERT INTO `settings`
+  (`name`, `value`, `description`)
+  VALUES
   ("titlemail", 335, "Number of hours before talk to ask for titles");
 INSERT INTO `settings`
   (`name`, `value`, `description`)
