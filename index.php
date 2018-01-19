@@ -12,11 +12,11 @@ $sem_day_text = date('D', strtotime("Sunday +{$seminar_time[0]} days"));
 <h1>CERCA Seminar Schedule</h1>
 <div>
 <p style="color:#220000">
-We meet most <?php print $sem_day_text?>ays in the Foldy Room from
+We meet most <?php print $sem_day_text?>days in the Foldy Room from
 <?php print $seminar_time[1]?>:<?php print $seminar_time[2]?> to
 <?php print $seminar_time[1]+1?>:<?php print $seminar_time[2]?> for two 25-30
 minute talks. Good pizza is generally served!  (Bad pizza is never served.)
-But if there is a particle astrophysics seminar that <?php print $sem_day_text?>ay
+But if there is a particle astrophysics seminar that <?php print $sem_day_text?>day
 then we sometimes meet on Tuesday, but sometimes we don't.
 </p>
 
