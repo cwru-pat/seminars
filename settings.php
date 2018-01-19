@@ -7,8 +7,8 @@ check_login();
 if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])$token->validateToken($_REQUEST['CSRFToken'])) {
 		// $safe_title = $mysqli->mysqlEscape($_REQUEST['title']);
 		foreach($_REQUEST as $name => $value) {
-			$safe_name = $mysqli->mysqlEscape($name)
-			$safe_value = $mysqli->mysqlEscape($value)
+			$safe_name = $mysqli->mysqlEscape($name);
+			$safe_value = $mysqli->mysqlEscape($value);
 			$mysqli->dbCommand("UPDATE settings SET value='{$safe_value}' WHERE name='{$safe_name}'");
 		}
 }
