@@ -2,17 +2,25 @@
 require_once("assets/includes/site.php");
 
 site_header();
+
+$result = $mysqli->dbQuery("SELECT value FROM settings WHERE name='seminartime' LIMIT 1");
+$seminar_time = explode('.',$result[0]->value);
+
+$sem_day_text = date('D', strtotime("Sunday +{$seminar_time[0]} days"));
+
 ?>
 <h1>CERCA Seminar Schedule</h1>
 <div>
 <p style="color:#220000">
-We meet most Fridays in the Miller Room from 12:45 to 1:45 for two 25-30 minute talks. <br />
-Good pizza is generally served!  (Bad pizza is never served.) But if there is a particle astrophysics seminar that
-Friday then we sometimes meet on Tuesday, but sometimes we don't.
+We meet most <?php print $sem_day_text?>ays in the Foldy Room from
+<?php print $seminar_time[1]?>:<?php print $seminar_time[2]?> to
+<?php print $seminar_time[1]+1?>:<?php print $seminar_time[2]?> for two 25-30
+minute talks. Good pizza is generally served!  (Bad pizza is never served.)
+But if there is a particle astrophysics seminar that <?php print $sem_day_text?>ay
+then we sometimes meet on Tuesday, but sometimes we don't.
 </p>
 
 <p style="color:#220000">
-<strong>Tate Deskins</strong> is running the show.
 To subscribe or unsubscribe to emails, please visit the <a href="https://groups.google.com/a/case.edu/forum/#!forum/cerca">CERCA Google Groups</a> page.
 </p>
 
@@ -60,9 +68,6 @@ if(isset($_REQUEST['key'])) {
     <?php
 
 } else {
-
-    $result = $mysqli->dbQuery("SELECT value FROM settings WHERE name='seminartime' LIMIT 1");
-    $seminar_time = explode('.',$result[0]->value);
 
     $result = $mysqli->dbQuery("SELECT seminars.id sid, talks.id id, date, title, name FROM seminars LEFT JOIN talks ON seminars.id=talks.seminar LEFT JOIN presenters ON presenters.id=talks.presenter ORDER BY date, name ASC");
     print "<table class='schedule'>";

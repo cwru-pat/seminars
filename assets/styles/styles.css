@@ -12,6 +12,7 @@ body#grayfeature #cerca table { width: 100%; font-size: 1.15em; }
 #cerca table td, th { border: 1px solid #DDD; padding: 4px 8px; margin: 0px; }
 
 #cerca table th { background: #DDE; }
+#cerca table tr td { background: #FFF; }
 #cerca table tr.striped td { background: #EEF; }
 
 #cerca table.schedule td { text-align: right; font-weight: bold; color: #955; font-size: 0.85em; }
