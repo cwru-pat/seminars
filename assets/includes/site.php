@@ -4,6 +4,7 @@ set_include_path(dirname(__FILE__));
 
 require_once("template.php");
 require_once("mysqli_conn.class.php");
+require_once("CSRFToken.class.php");
 require_once("functions.php");
 
 require_once("/usr/share/php/CAS.php");
