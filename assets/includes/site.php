@@ -22,3 +22,6 @@ $mysqli = new DBConn(array(
 
 // allow general access to run jobs?
 $jobaccess = TRUE;
+
+//reusable CSRFToken
+$token = new CSRFToken()
