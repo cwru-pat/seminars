@@ -24,7 +24,7 @@ foreach($seminars as $seminar) {
     $announce_time = $seminar_time - $conf['announcetime']*3600;
 
 
-/** 
+/**
 
 HANDLE TITLE REQUESTS
 
@@ -45,7 +45,7 @@ Hey there!
 You're scheduled to give a talk at the CERCA seminar on ".date("M jS, Y", $seminar_time).".  Before then, you'll need to submit a title that will go out in the CERCA reminder email.
 
 You should submit your title here:
-http://cerca.case.edu/pizza.php?key=" . $talk['edit_key'] . "
+http://" . $conf[server] . "/index.php?key=" . $talk['edit_key'] . "
 You can change this title as often as you like up until the time of your talk, but the CERCA announcement will be sent out at ".date("g:i a \\o\\n M jS", $announce_time).", so try to finalize before then.
 
 --This is an automated message; please reply to " . $conf['email'] . " if you need help or if you need to reschedule your talk.
@@ -61,16 +61,16 @@ Hey there!
 This is a reminder email - you're scheduled to give a talk at the CERCA seminar on ".date("M jS, Y", $seminar_time).".
 
 Don't forget to submit your title here:
-http://cerca.case.edu/pizza.php?key=" . $talk['edit_key'] . "
+http://" . $conf[server] . "/index.php?key=" . $talk['edit_key'] . "
 The CERCA announcement will be sent out at ".date("g:i a \\o\\n M jS", $announce_time).", so try to finalize before then!
 
---This is an automated message; please reply to ". $conf['email'] . " if you need help or if you need to reschedule your talk.
+--This is an automated message; please reply to " . $conf['email'] . " if you need help or if you need to reschedule your talk.
 ";
         }
 
         if($email) {
             // send email
-            
+
             $subject = "CERCA Seminar: Submit your talk title!";
             $org_email = $conf['email'];
             $to = $talk['email'];
@@ -88,7 +88,7 @@ The CERCA announcement will be sent out at ".date("g:i a \\o\\n M jS", $announce
             }
         }
     }
-/** 
+/**
 
 HANDLE SEMINAR ANNOUNCEMENTS
 
@@ -100,23 +100,23 @@ Hello,
 
 Just a reminder that the next CERCA seminar is at ".date("g:i a", $seminar_time)." today (about an hour from now). We'll be hearing from the following:
 ";
-        
+
         $talks = $mysqli->dbQuery("SELECT * FROM (SELECT * FROM talks WHERE seminar='".$seminar['id']."') AS t LEFT JOIN presenters ON t.presenter=presenters.id");
         foreach($talks as $talk) {
             $email .= "* " . ($talk->name) . ($talk->title ? (" on '" . $talk->title . "'") : "") . "\n";
         }
-        $email .= "\nYou can see the schedule of talks at http://cerca.case.edu/pizza.php.";
+        $email .= "\nYou can see the schedule of talks at http://" . $conf["server"] . "/index.php.";
         $email .= "\nHope to see you there!\n";
-        
-        
+
+
         // make sure there are actually talks this week.
         foreach($talks as $talk) {
             if($talk->name == "NO CERCA") {
                 $email = 0;
             }
         }
-        
-        
+
+
         $subject = "CERCA Seminar Soon";
         $org_email = $conf['email'];
         $to = "CERCA List <cerca@case.edu>";
@@ -135,8 +135,8 @@ Just a reminder that the next CERCA seminar is at ".date("g:i a", $seminar_time)
             print "No day of announcment!";
         }
     }
-    
-    
+
+
     // if (cercannounce < now && announced == 0)
         // announce seminar talks
     if($announce_time < $now && $seminar['announced'] == 0) {
@@ -150,7 +150,7 @@ For the next CERCA seminar (".date("M jS \\a\\t G:i", $seminar_time)."), we'll b
         foreach($talks as $talk) {
             $email .= "* " . ($talk->name) . ($talk->title ? (" on '" . $talk->title . "'") : "") . "\n";
         }
-        $email .= "\nYou can see the schedule of talks at http://cerca.case.edu/pizza.php.";
+        $email .= "\nYou can see the schedule of talks at http://" . $conf["server"] . "/index.php.";
         $email .= "\nHope to see you there!\n";
 
 
@@ -177,7 +177,7 @@ For the next CERCA seminar (".date("M jS \\a\\t G:i", $seminar_time)."), we'll b
             print "Mail failed!";
         }
     }
-    
+
 
 }
 

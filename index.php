@@ -35,7 +35,7 @@ if(isset($_REQUEST['key'])) {
     }
 
     // submit key if new one submitted
-    if(isset($_REQUEST['submit']) && isset($safe_key) && $safe_key) {
+    if(isset($_REQUEST['submit']) && isset($safe_key)) {
         $result = $mysqli->dbQuery("SELECT * FROM talks WHERE talks.edit_key='{$safe_key}'");
         if(count($result) != 1) { warning("Invalid access key - you can't change anything."); page_bottom(); die(); }
         $safe_title = $mysqli->mysqlEscape($_REQUEST['title']);
