@@ -13,6 +13,7 @@ if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])
 			$mysqli->dbCommand("UPDATE settings SET value='{$safe_value}' WHERE name='{$safe_name}'");
 		}
 }
+?>
 
 <form action="" method="post">
 <fieldset>
@@ -26,11 +27,11 @@ if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])
 		print o($form_values['description']);
 		print "</td><td>";
 		print "<input type='text' value='" . o($form_values[value]) . "' name='" . o($form_values[name]) . "' />";
-		print "<input type='hidden' name='CSRFToken' value='" . o($token->getToken()) . "'>";
 		print "</td></tr>";
 	}
 	?>
 	</table>
+	<input type='hidden' name='CSRFToken' value='<?php o($token->getToken()) ?>'>";
 	<input type="submit" name="submit" value="Submit Changes"/>
 </fieldset>
 </form>
