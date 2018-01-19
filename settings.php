@@ -31,7 +31,7 @@ if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])
 	}
 	?>
 	</table>
-	<input type='hidden' name='CSRFToken' value='<?php o($token->getToken()) ?>'>";
+	<input type='hidden' name='CSRFToken' value='<?php print o($token->getToken()) ?>'>
 	<input type="submit" name="submit" value="Submit Changes"/>
 </fieldset>
 </form>
