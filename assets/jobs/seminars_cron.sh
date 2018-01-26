@@ -3,7 +3,7 @@
 
 # To automate this, set up a cron job, similar to
 # PATH=/usr/sbin:/usr/bin:$PATH
-# */15 * * * * /PATH_TO_WEB_DIRECTORY/includes/jobs/seminars_cron.sh >> /PATH_TO_WEB_DIRECTORY/includes/log/cron.log
+# */15 * * * * /PATH_TO_WEB_DIRECTORY/assets/jobs/seminars_cron.sh >> /PATH_TO_WEB_DIRECTORY/assets/jobs/log/cron.log
 
 # which will run every 15 minutes.
 
