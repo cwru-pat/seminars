@@ -61,7 +61,7 @@ Hey there!
 This is a reminder email - you're scheduled to give a talk at the CERCA seminar on ".date("M jS, Y", $seminar_time).".
 
 Don't forget to submit your title here:
-http://" . $conf[server] . "/index.php?key=" . $talk['edit_key'] . "
+http://" . $conf['server'] . "/index.php?key=" . $talk['edit_key'] . "
 The CERCA announcement will be sent out at ".date("g:i a \\o\\n M jS", $announce_time).", so try to finalize before then!
 
 --This is an automated message; please reply to " . $conf['email'] . " if you need help or if you need to reschedule your talk.
@@ -82,7 +82,7 @@ The CERCA announcement will be sent out at ".date("g:i a \\o\\n M jS", $announce
             //$success = TRUE;
             if($success) {
                 print "Mail sent!";
-                $mysqli->dbCommand("UPDATE talks SET keymailed = keymailed+1 WHERE id='".$talk[id]."'");
+                $mysqli->dbCommand("UPDATE talks SET keymailed = keymailed+1 WHERE id='".$talk['id']."'");
             } else {
                 print "Mail failed!";
             }
