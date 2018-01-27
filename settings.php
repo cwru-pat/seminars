@@ -36,7 +36,22 @@ if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])
 </fieldset>
 </form>
 
-
+<h2>Error Logs</h2>
+<p>
 <?php
-
+$logfiles = array(PHP_LOG_FILE,CRON_LOG_FILE,MAIL_LOG_FILE,UPDATE_LOG_FILE,LOG_LOG_FILE);
+foreach($logfiles as $logfile){
+	if (file_exists($LOG_FILE) && $log = trim(file_get_contents($LOG_FILE))) {
+		print "<div class='form-group'>";
+		print "<label for='errors'>PHP Error Log Content</label>";
+		print "<textarea class='form-control' rows='10' readonly id='errors'>";
+		print o($log);
+		print "</textarea>";
+		print "</div>";
+	} else {
+		print "Currently there are no errors in error.log.";
+	}
+}
+?>
+</p>
 site_footer();
