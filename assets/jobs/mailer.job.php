@@ -81,10 +81,10 @@ The CERCA announcement will be sent out at ".date("g:i a \\o\\n M jS", $announce
             $success = mail($to, $subject, $email, $headers);
             //$success = TRUE;
             if($success) {
-                print "Mail sent!";
+                // print "Mail sent! ";
                 $mysqli->dbCommand("UPDATE talks SET keymailed = keymailed+1 WHERE id='".$talk['id']."'");
             } else {
-                print "Mail failed!";
+                print "Mail failed! ";
             }
         }
     }
@@ -126,13 +126,13 @@ Just a reminder that the next CERCA seminar is at ".date("g:i a", $seminar_time)
         if($email) {
             $success = mail($to, $subject, $email, $headers);
             if($success) {
-                print "Mail sent!";
+                // print "Mail sent! ";
                 $mysqli->dbCommand("UPDATE seminars SET announced=2 WHERE id='".$seminar['id']."'");
             } else {
-                print "Mail failed!";
+                print "Mail failed! ";
             }
         } else {
-            print "No day of announcment!";
+            print "No day of announcment! ";
         }
     }
 
@@ -171,14 +171,14 @@ For the next CERCA seminar (".date("M jS \\a\\t G:i", $seminar_time)."), we'll b
 
         $success = mail($to, $subject, $email, $headers);
         if($success) {
-            print "Mail sent!";
+            // print "Mail sent! ";
             $mysqli->dbCommand("UPDATE seminars SET announced=1 WHERE id='".$seminar['id']."'");
         } else {
-            print "Mail failed!";
+            print "Mail failed! ";
         }
     }
 
 
 }
 
-print "Mail run complete.";
+// print "Mail run complete.\n";
