@@ -28,7 +28,7 @@ if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])
 		print "<tr><td>";
 		print o($form_values['description']);
 		print "</td><td>";
-		print "<input type='text' value='" . o($form_values['value']) . "' name='" . o($form_values['name']) . ($form_values['name'] == "lastupdate" ? "' disabled'":"''") . "' />";
+		print "<input type='text' value='" . o($form_values['value']) . "' name='" . o($form_values['name']) . ($form_values['name'] == "lastupdate" ? "' disabled'":"") . "' />";
 		print "</td></tr>";
 	}
 	?>
@@ -42,7 +42,7 @@ if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])
 
 <?php
 $logfiles = array(PHP_LOG_FILE,CRON_LOG_FILE,MAIL_LOG_FILE,UPDATE_LOG_FILE,LOG_LOG_FILE);
-foreach($logfiles as $logfile){
+foreach($logfiles as $LOG_FILE){
 	print "<p>";
 	if (file_exists($LOG_FILE) && $log = trim(file_get_contents($LOG_FILE))) {
 		print "<div class='form-group'>";
