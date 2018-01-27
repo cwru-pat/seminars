@@ -39,23 +39,22 @@ if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])
 </form>
 
 <h2>Error Logs</h2>
-
+<div class='error-group'>
 <?php
 $logfiles = array(PHP_LOG_FILE,CRON_LOG_FILE,MAIL_LOG_FILE,UPDATE_LOG_FILE,LOG_LOG_FILE);
 foreach($logfiles as $LOG_FILE){
-	print "<p>";
+	print "<fieldset>";
+	print "<legend>". basename($LOG_FILE) . "</legend>";
 	if (file_exists($LOG_FILE) && $log = trim(file_get_contents($LOG_FILE))) {
-		print "<div class='form-group'>";
-		print "<label for='errors'>$LOG_FILE Content</label>";
-		print "<textarea class='form-control' rows='10' readonly id='errors'>";
+		print "<textarea class='form-control' rows='10' cols='80' readonly>";
 		print o($log);
 		print "</textarea>";
-		print "</div>";
 	} else {
-		print "Currently there are no errors in $LOG_FILE.";
+		print "Currently there are no logs.";
 	}
-	print "</p>";
+	print "</fieldset>";
 }
 ?>
+</div>
 <?php
 site_footer();
