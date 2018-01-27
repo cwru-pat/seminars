@@ -2,11 +2,11 @@
 
 set_include_path(dirname(__FILE__));
 
-define("PHP_LOG_FILE",__DIR__.'../jobs/log/error.log');
-define("CRON_LOG_FILE",__DIR__.'../jobs/log/cron.log');
-define("MAIL_LOG_FILE",__DIR__.'../jobs/log/mail.log');
-define("UPDATE_LOG_FILE",__DIR__.'../jobs/log/update.log');
-define("LOG_LOG_FILE",__DIR__.'../jobs/log/logrotate.log');
+define("PHP_LOG_FILE",__DIR__.'/../jobs/log/error.log');
+define("CRON_LOG_FILE",__DIR__.'/../jobs/log/cron.log');
+define("MAIL_LOG_FILE",__DIR__.'/../jobs/log/mail.log');
+define("UPDATE_LOG_FILE",__DIR__.'/../jobs/log/update.log');
+define("LOG_LOG_FILE",__DIR__.'/../jobs/log/logrotate.log');
 
 error_reporting(E_ALL);
 ini_set("display_errors", '0');
