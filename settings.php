@@ -28,7 +28,12 @@ if(isset($_REQUEST['submit']) && isset($_REQUEST['CSRFToken'])
 		print "<tr><td>";
 		print o($form_values['description']);
 		print "</td><td>";
-		print "<input type='text' value='" . o($form_values['value']) . "' name='" . o($form_values['name']) . ($form_values['name'] == "lastupdate" ? "disabled":"") . "/>";
+		print "<input type='text name='" . o($form_values['name']) . "' value='";
+		if($form_values['name'] == "lastupdate") {
+			print date('Y M d, G:i',$form_values['value']) . "' disabled />";
+		} else {
+			print o($form_values['value']) . "'/>";
+		}
 		print "</td></tr>";
 	}
 	?>
