@@ -1,7 +1,7 @@
 <?php session_start();
 
 set_include_path(dirname(__FILE__));
-
+define("PHP_LOG_FILE",'../jobs/log/error.log');
 require_once("template.php");
 require_once("mysqli_conn.class.php");
 require_once("CSRFToken.class.php");

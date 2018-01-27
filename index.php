@@ -96,7 +96,7 @@ if(isset($_REQUEST['key'])) {
             }
             print "</td><td>";
         }
-        $prevdate = $seminar[date];
+        $prevdate = $seminar['date'];
 
         if($seminar['name']) {
             print "<span class='person'>" . $seminar['name'] . "</span>";

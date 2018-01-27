@@ -45,7 +45,7 @@ Hey there!
 You're scheduled to give a talk at the CERCA seminar on ".date("M jS, Y", $seminar_time).".  Before then, you'll need to submit a title that will go out in the CERCA reminder email.
 
 You should submit your title here:
-http://" . $conf[server] . "/index.php?key=" . $talk['edit_key'] . "
+http://" . $conf['server'] . "/index.php?key=" . $talk['edit_key'] . "
 You can change this title as often as you like up until the time of your talk, but the CERCA announcement will be sent out at ".date("g:i a \\o\\n M jS", $announce_time).", so try to finalize before then.
 
 --This is an automated message; please reply to " . $conf['email'] . " if you need help or if you need to reschedule your talk.

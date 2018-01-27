@@ -72,7 +72,7 @@ if($item && $id) {
 			foreach($fields[$item] as $field) {
 				if("date" == $field) {
 					print "<input data-format='yyyy-MM-dd hh:mm:ss' name='{$field}' value='".o($form_values[$field])."' type='text'></input>";
-				  	print "(Enter using a 'YYYY-MM-DD HH:MM:SS' format.)<br />"; 
+				  	print "(Enter using a 'YYYY-MM-DD HH:MM:SS' format.)<br />";
 				} else {
 					print "Edit {$field}: <input type='text' name='{$field}' value='".o($form_values[$field])."' /><br />";
 				}
@@ -83,7 +83,7 @@ if($item && $id) {
 
 			// seminar field is hidden / set by context
 			if($id) {
-				$sid = $form_values[seminar];
+				$sid = $form_values['seminar'];
 			} elseif(isset($_REQUEST['sid'])) {
 				$sid = $mysqli->mysqlEscape($_REQUEST['sid']);
 			} else {
@@ -111,7 +111,7 @@ if($item && $id) {
 			// no edit_key field - this is handled separately.
 
 			break;
-		
+
 		default:
 			print "You can edit the following:
 					<ul>
@@ -147,13 +147,13 @@ if($item && $id) {
 if('presenters' == $item || 'seminars' == $item) {
 ?>
 	<table id="item-list">
-		<?php 
+		<?php
 			if($item == 'presenters') {
 				$result = $mysqli->dbQuery("SELECT * FROM {$safe_item} ORDER BY active DESC, name");
 			} elseif($item == 'seminars') {
 				$result = $mysqli->dbQuery("SELECT * FROM {$safe_item} ORDER BY date");
 			}
-			
+
 			if(count($result) == 0) {
 				print "No data here."; site_footer(); die();
 			}
@@ -191,7 +191,7 @@ foreach($result as $seminar) {
 
 	if($seminar['date'] != $prevdate) {
 		if($prevdate != "") { print "</td></tr>"; }
-		print "<tr><td>{$seminar[date]}<br />";
+		print "<tr><td>{$seminar['date']}<br />";
 		print "<a href='edit.php?item=seminars&id={$sid}'>edit</a>";
 		print " | <a href='edit.php?item=talks&sid={$sid}'>add speaker</a>";
         if($seminar['announced']) {
@@ -199,7 +199,7 @@ foreach($result as $seminar) {
         }
 		print "</td><td>";
 	}
-	$prevdate = $seminar[date];
+	$prevdate = $seminar['date'];
 
 	if($seminar['name']) {
 		print $seminar['name'] . ($seminar['title'] ? " - " . o($seminar['title']) : "");
@@ -213,11 +213,10 @@ foreach($result as $seminar) {
 print "</td></tr></table>";
 
 ?>
-	
+
 
 
 <?php
 }
 
 site_footer();
-

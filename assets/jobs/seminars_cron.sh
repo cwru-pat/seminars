@@ -9,7 +9,7 @@
 
 my_dir=$(cd `dirname $0` && pwd)
 cd $my_dir
-touch log/mail.log log/update.log log/cron.log log/logrotate.log
+touch log/mail.log log/update.log log/cron.log log/logrotate.log log/error.log
 php mailer.job.php >> log/mail.log
 php runupdate.job.php >> log/update.log
 logrotate -s log/logrotate.log logrotate.conf
