@@ -95,11 +95,9 @@ HANDLE SEMINAR ANNOUNCEMENTS
 **/
 
     if($seminar_time-4800 < $now && $seminar['announced'] == 1) {
-        $email = "
-Hello,
-
-Just a reminder that the next CERCA seminar is at ".date("g:i a", $seminar_time)." today (about an hour from now). We'll be hearing from the following:
-";
+        $email = "Hello,\n\nJust a reminder that the next CERCA seminar is at "
+        $email .= date("g:i a", $seminar_time)
+        $email .= " today (about an hour from now). We'll be hearing from the following:\n";
 
         $talks = $mysqli->dbQuery("SELECT * FROM (SELECT * FROM talks WHERE seminar='".$seminar['id']."') AS t LEFT JOIN presenters ON t.presenter=presenters.id");
         foreach($talks as $talk) {
@@ -111,7 +109,7 @@ Just a reminder that the next CERCA seminar is at ".date("g:i a", $seminar_time)
 
         // make sure there are actually talks this week.
         foreach($talks as $talk) {
-            if($talk->name == "NO CERCA") {
+            if($talk->name == "NO CERCA" || "Seminar") {
                 $email = 0;
             }
         }
@@ -127,7 +125,7 @@ Just a reminder that the next CERCA seminar is at ".date("g:i a", $seminar_time)
             $success = mail($to, $subject, $email, $headers);
             if($success) {
                 // print "Mail sent! ";
-                $mysqli->dbCommand("UPDATE seminars SET announced=2 WHERE id='".$seminar['id']."'");
+                $mysqli->dbCommand("UPDATE seminars SET announced=2 WHERE id='" . $seminar['id'] . "'");
             } else {
                 print "Mail failed! ";
             }
@@ -140,11 +138,9 @@ Just a reminder that the next CERCA seminar is at ".date("g:i a", $seminar_time)
     // if (cercannounce < now && announced == 0)
         // announce seminar talks
     if($announce_time < $now && $seminar['announced'] == 0) {
-        $email = "
-Hello,
-
-For the next CERCA seminar (".date("M jS \\a\\t G:i", $seminar_time)."), we'll be hearing from the following:
-";
+        $email = "Hello,\n\n For the next CERCA seminar (";
+        $email .= date("M jS \\a\\t G:i", $seminar_time);
+        $email .= "), we'll be hearing from the following:\n";
 
         $talks = $mysqli->dbQuery("SELECT * FROM (SELECT * FROM talks WHERE seminar='".$seminar['id']."') AS t LEFT JOIN presenters ON t.presenter=presenters.id");
         foreach($talks as $talk) {
@@ -157,7 +153,9 @@ For the next CERCA seminar (".date("M jS \\a\\t G:i", $seminar_time)."), we'll b
         // make sure there are actually talks this week.
         foreach($talks as $talk) {
             if($talk->name == "NO CERCA") {
-                $email = "Hello - Just a reminder that there will be NO CERCA this week, but stay tuned for future talks!";
+                $email = "Hello - Just a reminder that there will be NO CERCA this week";
+                $email .= ($talk->title ? (" due to the following: '" . $talk->title . "'") : ".");
+                $email .= "\nStay tuned for future talks!\n";
             }
         }
 
