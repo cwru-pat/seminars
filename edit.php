@@ -47,6 +47,10 @@ if($item && $action) {
 	if("delete" == $action) {
 		$command = "DELETE FROM {$safe_item} WHERE id='{$safe_id}'";
 		$mysqli->dbCommand($command);
+		if($safe_item == "seminars") {
+			$command = "DELETE FROM talks WHERE seminar='{$safe_id}'";
+			$mysqli->dbCommand($command);
+		}
 		header("Location: edit.php?item={$safe_item}"); die();
 	}
 
