@@ -95,8 +95,8 @@ HANDLE SEMINAR ANNOUNCEMENTS
 **/
 
     if($seminar_time-4800 < $now && $seminar['announced'] == 1) {
-        $email = "Hello,\n\nJust a reminder that the next CERCA seminar is at "
-        $email .= date("g:i a", $seminar_time)
+        $email = "Hello,\n\nJust a reminder that the next CERCA seminar is at ";
+        $email .= date("g:i a", $seminar_time);
         $email .= " today (about an hour from now). We'll be hearing from the following:\n";
 
         $talks = $mysqli->dbQuery("SELECT * FROM (SELECT * FROM talks WHERE seminar='".$seminar['id']."') AS t LEFT JOIN presenters ON t.presenter=presenters.id");
