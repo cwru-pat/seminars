@@ -4,6 +4,7 @@ include("../includes/site.php");
 if(!$jobaccess) { die("POOPER SCOOPER"); }
 
 $now = time();
+$hrnow = date('Y M d, G:i',$now); //human readable for logging
 $settings = $mysqli->dbQuery("SELECT * FROM settings");
 $conf = Array();
 foreach($settings as $setting) {
@@ -84,7 +85,7 @@ The CERCA announcement will be sent out at ".date("g:i a \\o\\n M jS", $announce
                 // print "Mail sent! ";
                 $mysqli->dbCommand("UPDATE talks SET keymailed = keymailed+1 WHERE id='".$talk['id']."'");
             } else {
-                print "Mail failed! ";
+                print "$hrnow: Title mail failed!\n";
             }
         }
     }
@@ -109,7 +110,7 @@ HANDLE SEMINAR ANNOUNCEMENTS
 
         // make sure there are actually talks this week.
         foreach($talks as $talk) {
-            if($talk->name == "NO CERCA" || "Seminar") {
+            if($talk->name == "NO CERCA") {
                 $email = 0;
             }
         }
@@ -127,10 +128,11 @@ HANDLE SEMINAR ANNOUNCEMENTS
                 // print "Mail sent! ";
                 $mysqli->dbCommand("UPDATE seminars SET announced=2 WHERE id='" . $seminar['id'] . "'");
             } else {
-                print "Mail failed! ";
+                print "$hrnow: Day of mail failed!\n ";
             }
         } else {
-            print "No day of announcment! ";
+            $mysqli->dbCommand("UPDATE seminars SET announced=2 WHERE id='" . $seminar['id'] . "'");
+            print "$hrnow: No day of announcment!\n ";
         }
     }
 
@@ -172,7 +174,7 @@ HANDLE SEMINAR ANNOUNCEMENTS
             // print "Mail sent! ";
             $mysqli->dbCommand("UPDATE seminars SET announced=1 WHERE id='".$seminar['id']."'");
         } else {
-            print "Mail failed! ";
+            print "$hrnow: No Cerca mail failed!\n";
         }
     }
 
